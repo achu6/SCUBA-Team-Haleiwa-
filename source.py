@@ -4,10 +4,10 @@ HEIGHT = 200
 WIDTH = 600
 
 
-
 def get_time(depth):
+    global check
     if int(depth) < 0 or int(depth) > 42:
-        instruction['text'] = "depth not avalible"
+        instruction['text'] = "Depth not avalible"
     elif int(depth) < 30 and int(depth) > 0:
         instruction['text'] = " A safety stop for 3 to 5 minutes at 5 metres is recommended"
     else:
@@ -17,10 +17,12 @@ def get_time(depth):
         time = maxTime[int(depth) -1]
     except:
         print("error")
-        
-    count = time*60
-    set_count = count
-    countdown(count)
+
+    if check == 0 :
+        count = time*60
+        set_count = count
+        countdown(count)
+        check = 1
 
 def humanize_time(secs):
     mins, secs = divmod(secs, 60)
@@ -28,16 +30,20 @@ def humanize_time(secs):
     return '%02d:%02d:%02d' % (hours, mins, secs)
 
 def countdown(count):
+    global check
     # change text in label
     label['text'] = humanize_time(count)
 
     if count > 0:
         # call countdown again after 1000ms (1s)
         root.after(1000, countdown, count-1)
+    else:
+        check = 0
 
 def reset_time():
     count = set_count
 
+check = 0
 root = tk.Tk()
 canvas = tk.Canvas(root, height=HEIGHT, width=WIDTH)
 canvas.pack()
@@ -57,7 +63,7 @@ lower_frame.place(relx=0.5, rely=0.45, relwidth=0.8, relheight=0.3, anchor='n')
 label = tk.Label(lower_frame)
 label.place(rely=0.5,relwidth=1, relheight=0.5)
 
-instruction = tk.Label(lower_frame, text="input depth in meter to start timer countdown")
+instruction = tk.Label(lower_frame, text="Input depth in meter to start timer countdown")
 instruction.place(relwidth=1, relheight=0.5)
 
 
