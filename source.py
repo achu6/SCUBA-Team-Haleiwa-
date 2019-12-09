@@ -92,10 +92,10 @@ def getNitrogenLevelForFirstDive(depth,time):
   return nitrogenLst[key]
 
 
-depth = int(input('Enter depth for first dive : '))
+depth = int(input('Enter depth for first dive (in meters) : '))
 while(depth>42  or  depth<=0):
   print('Input a depth less than or equal to 42 and greater then 0.')
-  depth = int(input('Enter depth for first dive : '))
+  depth = int(input('Enter depth for first dive (in meters) : '))
 depthKey , depth = roundUpToNearestDepth(depth)
 maxTime = maxTimeForDepth(depth)
 print('Maxtime for first dive is: ', maxTime)
@@ -108,10 +108,10 @@ print('Nitrogrn level is : ', ntrLevel)
 restTime = int(input('What is your rest time in minutes?: '))
 ntrKey,rest = minSurface(ntrLevel,restTime)
 print('New nitrogen level is: ',nitrogenLst[ntrKey])
-depth = int(input('Enter depth for second dive : '))
+depth = int(input('Enter depth for second dive (in meters) : '))
 while(depth>40  or  depth<=0):
   print('Input a depth less than or equal to 40 and greater then 0.')
-  depth = int(input('Enter depth for second dive : '))
+  depth = int(input('Enter depth for second dive (in meters) : '))
 depthKey,depth  = roundUpToNearestDepth(depth)
 print('Maxtime for second dive is: ', ANDL[depthKey][ntrKey])
 actualTime = int(input('Enter actualTime for second dive : '))
@@ -125,7 +125,7 @@ print('Nitrogrn level is : ', ntrLevel)
 restTime = int(input('What is your rest time in minutes?: '))
 ntrKey,rest = minSurface(ntrLevel,restTime)
 print('New nitrogen level is: ',nitrogenLst[ntrKey])
-depth = int(input('Enter depth for third dive : '))
+depth = int(input('Enter depth for third dive (in meters) : '))
 while(depth>40  or  depth<=0):
   print('Input a depth less than or equal to 35 and greater then 0.')
   depth = int(input('Enter depth for second dive : '))
